@@ -2,12 +2,16 @@ require 'win32ole'
 require 'satori_lib'
 include STI_lib
 test = WIN32OLE.new('MRTKUSLib.MRTKUSMove')
-#test.SetProperty(SATORI[:MAILROOM_SERVER_LIST],'ncoalink.satorisoftware.com:5150')
+test.SetProperty(SATORI[:MAILROOM_SERVER_LIST],'ncoalink.satorisoftware.com:5150')
 p 'preparando...'
 test.PrepareTask
 p 'setiando conf...'
-#test.SetProperty(MOVET[:NCOALINK_CUSTOMER_ID],'VUFRAY')
-#test.SetProperty(MOVET[:NCOALINK_CUSTOMER_PASSWORD],'LCUL8RXD')
+
+pass = 'xxxx'
+user = 'xxxx'
+
+test.SetProperty(MOVET[:NCOALINK_CUSTOMER_ID],pass)
+test.SetProperty(MOVET[:NCOALINK_CUSTOMER_PASSWORD],user)
 test._invoke(2,[MOVET[:NCOALINK_SHOW_PROGRESS],false],[WIN32OLE::VARIANT::VT_INT,WIN32OLE::VARIANT::VT_BOOL])
 #test._invoke(2,[MOVET[:NCOALINK_HIDE_PROGRESS_AFTER_PROCESS],true],[WIN32OLE::VARIANT::VT_INT,WIN32OLE::VARIANT::VT_BOOL])
 test.SetProperty(SATORI[:FIELD_LIST_IN],MOVE_DEFAULT_IN_LAYOUT.join("\t"))
